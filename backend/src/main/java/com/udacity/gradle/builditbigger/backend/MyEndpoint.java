@@ -24,11 +24,20 @@ import club.battlestar.vachan.jokes.JokesProvider;
 public class MyEndpoint {
 
     /** A simple endpoint method that takes a name and says Hi back */
-    @ApiMethod(name = "joke", httpMethod = "GET")
-    public MyBean joke() {
+    @ApiMethod(name = "sayHi")
+    public MyBean sayHi(@Named("name") String name) {
+        MyBean response = new MyBean();
+        response.setData("Hi, " + name);
+
+        return response;
+    }
+
+    @ApiMethod(name = "getRandomJoke")
+    public MyBean getRandomJoke(){
         MyBean response = new MyBean();
         response.setData(new JokesProvider().getJokes());
-        return response;
+
+        return  response;
     }
 
 }

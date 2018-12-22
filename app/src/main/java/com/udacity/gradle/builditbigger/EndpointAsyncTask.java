@@ -2,6 +2,7 @@ package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -14,6 +15,12 @@ import java.io.IOException;
 
 
 class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
+
+    public interface callBackToMainActivity {
+        void sendInfo(String data);
+    }
+
+
     private static MyApi myApiService = null;
     private Context context;
 
@@ -42,7 +49,7 @@ class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
 
 
         try {
-            return myApiService.joke().execute().getData();
+            return myApiService.getRandomJoke().execute().getData();
         } catch (IOException e) {
             return e.getMessage();
         }
@@ -56,6 +63,8 @@ class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
         intent.putExtra(DisplayJokeActivity.JOKE_KEY,result);
         context.startActivity(intent);
 */
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+       // callBackToMainActivity mCallback = (callBackToMainActivity) context;
+        Log.v("result_tag", "Value: " + result);
+      // mCallback.sendInfo(result);
     }
 }

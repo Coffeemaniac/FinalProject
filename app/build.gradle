@@ -32,20 +32,16 @@ android {
         }
     }
 
-    flavorDimensions "version"
-
-
-    productFlavors {
-        free {
-            dimension "version"
+    flavorDimensions "standard"
+    productFlavors{
+        free{
             applicationId "com.udacity.gradle.builditbigger.free"
         }
-
-        paid {
-            dimension "version"
+        paid{
             applicationId "com.udacity.gradle.builditbigger.paid"
         }
     }
+
 }
 
 
@@ -53,7 +49,6 @@ android {
 dependencies {
     implementation project(":Jokes")
     implementation project(":jokesandroidlibrary")
-    implementation project(":backend")
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation 'com.android.support:appcompat-v7:26.1.0'

@@ -20,10 +20,31 @@
  "id": "myApi:v1",
  "kind": "discovery#restDescription",
  "methods": {
-  "joke": {
+  "getRandomJoke": {
    "httpMethod": "GET",
-   "id": "myApi.joke",
-   "path": "joke",
+   "id": "myApi.getRandomJoke",
+   "path": "mybean",
+   "response": {
+    "$ref": "MyBean"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "sayHi": {
+   "httpMethod": "POST",
+   "id": "myApi.sayHi",
+   "parameterOrder": [
+    "name"
+   ],
+   "parameters": {
+    "name": {
+     "location": "path",
+     "required": true,
+     "type": "string"
+    }
+   },
+   "path": "sayHi/{name}",
    "response": {
     "$ref": "MyBean"
    },

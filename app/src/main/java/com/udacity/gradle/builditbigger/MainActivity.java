@@ -12,14 +12,14 @@ import club.battlestar.vachan.jokes.JokesProvider;
 import club.battlestar.vachan.jokesandroidlibrary.DisplayJokesActivity;
 
 
-public class MainActivity extends AppCompatActivity implements MainActivityFragment.callBack{
+
+public class MainActivity extends AppCompatActivity implements EndpointAsyncTask.callBackToMainActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new EndpointAsyncTask().execute(this);
     }
 
 
@@ -45,13 +45,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityFragm
         return super.onOptionsItemSelected(item);
     }
 
-    public void sendIntent(){
-        /*
-        JokesProvider mProvider = new JokesProvider();
+    public void sendInfo(String data){
         Intent intent = new Intent(this, DisplayJokesActivity.class);
-        intent.putExtra("JOKES_KEY", mProvider.getJokes());
+        intent.putExtra("JOKES_KEY", data);
         startActivity(intent);
-        */
     }
 
 
