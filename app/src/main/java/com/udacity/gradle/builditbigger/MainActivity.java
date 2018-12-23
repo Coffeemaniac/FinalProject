@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import club.battlestar.vachan.jokes.JokesProvider;
 import club.battlestar.vachan.jokesandroidlibrary.DisplayJokesActivity;
 
 
@@ -50,6 +49,5 @@ public class MainActivity extends AppCompatActivity implements EndpointAsyncTask
         intent.putExtra("JOKES_KEY", data);
         startActivity(intent);
     }
-
 
 }

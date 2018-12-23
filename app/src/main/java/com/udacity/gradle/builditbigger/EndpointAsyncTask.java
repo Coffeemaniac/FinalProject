@@ -19,13 +19,19 @@ import club.battlestar.vachan.jokesandroidlibrary.DisplayJokesActivity;
 
 class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
 
+    private static MyApi myApiService = null;
+    private callBackToMainActivity mCallback;
+
+    public EndpointAsyncTask(callBackToMainActivity callback){
+        this.mCallback = (callBackToMainActivity) callback;
+    }
+
     public interface callBackToMainActivity {
         void sendInfo(String data);
     }
 
 
-    private static MyApi myApiService = null;
-    private Context context;
+
 
     @Override
     protected String doInBackground(Context... params) {
@@ -48,21 +54,15 @@ class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
             myApiService = builder.build();
         }
 
-        context = params[0];
-
-
         try {
             return myApiService.getRandomJoke().execute().getData();
         } catch (IOException e) {
-
             return null;
         }
     }
 
     @Override
     protected void onPostExecute(String result) {
-
-        callBackToMainActivity mCallback = (callBackToMainActivity) context;
         mCallback.sendInfo(result);
         Log.v("result_tag", "Value: " + result);
     }
