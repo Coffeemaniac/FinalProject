@@ -1,6 +1,7 @@
 package com.udacity.gradle.builditbigger;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,6 +13,8 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
+
+import club.battlestar.vachan.jokesandroidlibrary.DisplayJokesActivity;
 
 
 class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
@@ -51,20 +54,18 @@ class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
         try {
             return myApiService.getRandomJoke().execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            return null;
         }
     }
 
     @Override
     protected void onPostExecute(String result) {
-        /*// Create Intent to launch JokeFactory Activity
-        Intent intent = new Intent(context, DisplayJokeActivity.class);
+
+        Intent intent = new Intent(context, DisplayJokesActivity.class);
         // Put the string in the envelope
-        intent.putExtra(DisplayJokeActivity.JOKE_KEY,result);
+        intent.putExtra("JOKES_KEY",result);
         context.startActivity(intent);
-*/
-       // callBackToMainActivity mCallback = (callBackToMainActivity) context;
+
         Log.v("result_tag", "Value: " + result);
-      // mCallback.sendInfo(result);
     }
 }
