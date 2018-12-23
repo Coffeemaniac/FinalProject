@@ -54,6 +54,7 @@ class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
         try {
             return myApiService.getRandomJoke().execute().getData();
         } catch (IOException e) {
+
             return null;
         }
     }
@@ -61,11 +62,8 @@ class EndpointAsyncTask extends AsyncTask<Context, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        Intent intent = new Intent(context, DisplayJokesActivity.class);
-        // Put the string in the envelope
-        intent.putExtra("JOKES_KEY",result);
-        context.startActivity(intent);
-
+        callBackToMainActivity mCallback = (callBackToMainActivity) context;
+        mCallback.sendInfo(result);
         Log.v("result_tag", "Value: " + result);
     }
 }
